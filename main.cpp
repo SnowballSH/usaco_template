@@ -4,6 +4,18 @@ using namespace std;
 
 #define old_usaco false
 #define dfs_enabled false
+#define pbds_enabled false
+
+// Policy Based Data Structures
+#if pbds_enabled
+#include <bits/extc++.h>
+using namespace __gnu_pbds;
+ 
+// Red-black tree => O(log n) ordered set
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>,
+                         rb_tree_tag, tree_order_statistics_node_update>;
+#endif
 
 #define get_vec(T, n, name)   \
   vector<T> name(n);          \
@@ -46,23 +58,12 @@ T last_true(T lo, const T hi, const function<bool(T)> f)
   return lo;
 }
 
-template <typename T, typename M>
-M reduce_f(const T lo, const T hi, const function<T(M, T)> f)
-{
-  M ans = 0;
-  for (T i = lo; i <= hi; i++)
-  {
-    ans = f(ans, i);
-  }
-  return ans;
-}
-
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
 #if old_usaco
-  setIO("haybales.in");
+  setIO("name");
 #endif
 
   return 0;
